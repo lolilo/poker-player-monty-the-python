@@ -73,6 +73,16 @@ class Player:
             bet = probability / .65 * monty['stack']
         else:
             bet = 4.0 * game_state['small_blind']
+
+        if len(game_state['community_cards']) == 0:
+            pass
+        elif len(game_state['community_cards']) == 3:
+            bet += game_state['current_buy_in'] + game_state['minimum_raise']+1
+        elif len(game_state['community_cards']) == 4:
+            pass #this is the turn
+        elif len(game_state['community_cards']) == 5:
+            bet += game_state['current_buy_in'] + game_state['minimum_raise']+1
+
         return int(bet)
 
         # if self.isPair(monty_hole_cards):

@@ -94,12 +94,20 @@ class TestPlayer(unittest.TestCase):
                 {
                     "rank": "6",
                     "suit": "clubs"
+                },
+                {
+                    "rank": "7",
+                    "suit": "clubs"
+                },
+                {
+                    "rank": "8",
+                    "suit": "clubs"
                 }
             ]
         }
 
     def test_betRequest(self):
-        self.assertEqual(self.player.betRequest(self.game_state), 856)
+        self.assertEqual(self.player.betRequest(self.game_state), 1417)
         self.assertEqual(self.player.showdown(self.game_state), 0)
 
     def test_isPair_and_suit(self):
