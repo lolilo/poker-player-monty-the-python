@@ -66,7 +66,7 @@ class Player:
         play = False
         
         for player in game_state['players']:
-            if player['stack'] == 0:
+            if player['status'] == 'out':
                 play = True
                 
         if play == False:
