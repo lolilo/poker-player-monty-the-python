@@ -1,4 +1,5 @@
 import sys
+import csv
 
 class Player:
     VERSION = "rank data"
@@ -52,28 +53,36 @@ class Player:
         pass
 
     def betRequest(self, game_state):
-        big_blind = 2.0*game_state["small_blind"]
-	monty_index = game_state['in_action']
-	monty = game_state['players'][monty_index]
-	monty_hole_cards = monty['hole_cards']
+        PREFLOP_PROBABILITIES = self.get_probability_dict('preflop_probabilities.csv')
+        monty_index = game_state['in_action']
+        monty = game_state['players'][monty_index]
+        monty_hole_cards = monty['hole_cards']
+
 
         if self.isPair(monty_hole_cards):
             if self.isPair(monty_hole_cards) in self.HIGH:
                 return self.MAX_CHIPS
 
-	max_bet = 0
-	for card in monty_hole_cards:
-		rank = card['rank']
-		if rank in self.HIGH:
-			max_bet += 700
-		elif rank in self.MEDIUM:
-			max_bet += 300
-		else:
-			max_bet += 50
+        max_bet = 0
+        for card in monty_hole_cards:
+            rank = card['rank']
+            if rank in self.HIGH:
+                max_bet += 700
+            elif rank in self.MEDIUM:
+                max_bet += 300
+            else:
+                max_bet += 50
 
-	return max_bet
+        return max_bet
 
     def showdown(self, game_state):
         print >> sys.stderr, 'Showdown!'
         print >> sys.stderr, str( game_state['game_id'] )
         return 0
+
+    def get_probability_dict(self, csv_file):
+        with open(csv_file, mode='r') as infile:
+            reader = csv.reader(infile, delimiter='\t')
+            dict = {rows[0]:float(rows[1]) for rows in reader}
+            return dict
+

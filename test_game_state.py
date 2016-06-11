@@ -110,7 +110,7 @@ class TestPlayer(unittest.TestCase):
         hand_2 = [{'rank': 'K', 'suit': 'hearts'}, {'rank': 'K', 'suit': 'spades'}]
 
         self.assertFalse(self.player.isPair(hand_1))
-        self.assertEqual(self.player.isPair(hand_2),"K")
+        self.assertEqual(self.player.isPair(hand_2), "K")
 
         self.assertTrue(self.player.isSuited(hand_1))
         self.assertFalse(self.player.isSuited(hand_2))
