@@ -64,7 +64,8 @@ class Player:
         if probability > .33:
             bet = probability / .65 * monty['stack']
         else:
-            bet = 4.0 * game_state['small_blind']
+            if int(monty['stack']/game_state['small_blind']) > 50:
+               bet = 4.0 * game_state['small_blind']
 
         num_community_cards = len(game_state['community_cards'])
 
@@ -75,7 +76,8 @@ class Player:
         elif num_community_cards == 4:
             pass #this is the turn
         elif num_community_cards == 5:
-            bet += game_state['current_buy_in'] + game_state['minimum_raise']+1
+            if game_state['current_buy_in'] < 0.5*game_state['pot']:
+                bet += game_state['current_buy_in'] + game_state['minimum_raise']+1
 
         return int(bet)
 

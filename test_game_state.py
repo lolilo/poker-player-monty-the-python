@@ -5,6 +5,10 @@ from player import Player
 class TestPlayer(unittest.TestCase):
     def setUp(self):
         self.player = Player()
+
+        self.sample_hand = [
+            {"rank":"5", "suit":"diamonds"}, {"rank":"5", "suit":"clubs"}, {"rank":"5", "suit":"spades"}]
+        
         self.game_state = {
             "tournament_id":"550d1d68cd7bd10003000003",     # Id of the current tournament
 
@@ -107,7 +111,7 @@ class TestPlayer(unittest.TestCase):
         }
 
     def test_betRequest(self):
-        self.assertEqual(self.player.betRequest(self.game_state), 1417)
+        self.assertEqual(self.player.betRequest(self.game_state), 856)
         self.assertEqual(self.player.showdown(self.game_state), 0)
 
     def test_isPair_and_suit(self):
@@ -131,5 +135,8 @@ class TestPlayer(unittest.TestCase):
         self.assertEqual(self.player.getHandString(hand_3),"KTs","Hand 3 didn't parse correctly to KTs")
         self.assertEqual(self.player.getHandString(hand_4),"32o","Hand 4 didn't parse correctly to 32o")
 
+    def test_ranking(self):
+        pass
+        
 if __name__ == '__main__':
     unittest.main()
