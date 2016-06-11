@@ -63,8 +63,13 @@ class Player:
         probability = PREFLOP_PROBABILITIES[hand_string]
 
         bet = 0
+        play = False
         
-        if len(game_state['players']) == 3:
+        for player in game_state['players']:
+            if player['stack'] == 0:
+                play = True
+                
+        if play == False:
             if self.isPair(monty_hole_cards):
                 if self.isPair(monty_hole_cards) in self.HIGH:
                     return 3000
