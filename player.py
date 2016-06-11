@@ -1,7 +1,7 @@
 import sys
 
 class Player:
-    VERSION = "Default Python folding player"
+    VERSION = "rank data"
     HIGH = ['10', 'J', 'Q', 'K', 'A']
     MEDIUM = ['7', '8', '9']
     MAX_CHIPS = 3000
