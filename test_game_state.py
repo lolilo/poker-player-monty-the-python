@@ -105,12 +105,26 @@ class TestPlayer(unittest.TestCase):
     def test_rough_evaluation(self):
         self.assertEqual(self.player.betRequest(self.game_state), 750)
 
-    def test_isPair(self):
-        hand_1 = [{'rank': '6', 'suit': 'hearts'}, {'rank': 'K', 'suit': 'spades'}]
+    def test_isPair_and_suit(self):
+        hand_1 = [{'rank': '6', 'suit': 'hearts'}, {'rank': 'K', 'suit': 'hearts'}]
         hand_2 = [{'rank': 'K', 'suit': 'hearts'}, {'rank': 'K', 'suit': 'spades'}]
 
         self.assertFalse(self.player.isPair(hand_1))
         self.assertEqual(self.player.isPair(hand_2),"K")
+
+        self.assertTrue(self.player.isSuited(hand_1))
+        self.assertFalse(self.player.isSuited(hand_2))
+
+    def test_string_conversion(self):
+        hand_1 = [{'rank': '6', 'suit': 'hearts'}, {'rank': 'K', 'suit': 'hearts'}]
+        hand_2 = [{'rank': 'K', 'suit': 'hearts'}, {'rank': 'K', 'suit': 'spades'}]
+        hand_3 = [{'rank': 'K', 'suit': 'spades'}, {'rank': 'T', 'suit': 'spades'}]
+        hand_4 = [{'rank': '2', 'suit': 'clubs'}, {'rank': '3', 'suit': 'spades'}]
+
+        self.assertEqual(self.player.getHandString(hand_1),"K6s","Hand 1 didn't parse correctly to K6s. got {0} instead.".format(self.player.getHandString(hand_1)))
+        self.assertEqual(self.player.getHandString(hand_2),"KK","Hand 2 didn't parse correctly to KK")
+        self.assertEqual(self.player.getHandString(hand_3),"KTs","Hand 3 didn't parse correctly to KTs")
+        self.assertEqual(self.player.getHandString(hand_4),"32o","Hand 4 didn't parse correctly to 32o")
 
 if __name__ == '__main__':
     unittest.main()
