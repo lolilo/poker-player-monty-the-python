@@ -105,6 +105,12 @@ class TestPlayer(unittest.TestCase):
     def test_rough_evaluation(self):
         self.assertEqual(self.player.betRequest(self.game_state), 750)
 
+    def test_isPair(self):
+        hand_1 = [{'rank': '6', 'suit': 'hearts'}, {'rank': 'K', 'suit': 'spades'}]
+        hand_2 = [{'rank': 'K', 'suit': 'hearts'}, {'rank': 'K', 'suit': 'spades'}]
+
+        self.assertFalse(self.player.isPair(hand_1))
+        self.assertEqual(self.player.isPair(hand_2),"K")
 
 if __name__ == '__main__':
     unittest.main()

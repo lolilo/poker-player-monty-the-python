@@ -4,11 +4,26 @@ class Player:
     VERSION = "Default Python folding player"
     HIGH = ['10', 'J', 'Q', 'K', 'A']
     MEDIUM = ['7', '8', '9']
+    MAX_CHIPS = 3000
+
+    #isPair returns the pair rank if the cards are pair, it returns false otherwise
+    def isPair(self, monty_hole_cards):
+        cards = [card['rank'] for card in monty_hole_cards]
+        if len(cards) == 2:
+            if cards[0] == cards[1]:
+                return cards[0]
+            else:
+                return False
 
     def betRequest(self, game_state):
+        big_blind = 2.0*game_state["small_blind"]
     	monty_index = game_state['in_action']
     	monty = game_state['players'][monty_index]
     	monty_hole_cards = monty['hole_cards']
+
+        if self.isPair(monty_hole_cards):
+            if self.isPair(monty_hole_cards) in HIGH:
+                return self.MAX_CHIPS
 
     	max_bet = 0
     	for card in monty_hole_cards:
