@@ -13,14 +13,22 @@ class Player:
         pair = self.isPair(monty_hole_cards)
 
         if pair:
-            return '{0}{0}'.format(pair)
+            if pair == "10":
+                return 'TT'
+            else:
+                return '{0}{0}'.format(pair)
 
         cards = [card['rank'] for card in monty_hole_cards]
-
+        
         if int(self.CARD_VALUE[cards[0]]) < int(self.CARD_VALUE[cards[1]]):
             cards.reverse()
 
         if len(cards) == 2:
+            if cards[0] == '10':
+                cards[0] = 'T'
+            if cards[1] == '10':
+                cards[1] = 'T'
+                
             if self.isSuited(monty_hole_cards):
                 return '{0}{1}s'.format(cards[0],cards[1])
             else:
