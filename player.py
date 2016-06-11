@@ -27,7 +27,7 @@ class Player:
     	monty_hole_cards = monty['hole_cards']
 
         if self.isPair(monty_hole_cards):
-            if self.isPair(monty_hole_cards) in HIGH:
+            if self.isPair(monty_hole_cards) in self.HIGH:
                 return self.MAX_CHIPS
 
     	max_bet = 0
