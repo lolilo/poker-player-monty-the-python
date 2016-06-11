@@ -4,7 +4,7 @@ import csv
 class Player:
     VERSION = "rank data"
     HIGH = ['T', 'J', 'Q', 'K', 'A']
-    CARD_VALUE = {'T': 10, 'J': 11, 'Q' :12 , 'K' :13, 'A': 14, '2': 2, '3': 3, '4':4, '5':5, '6':6, '7':7, '8': 8, '9': 9}
+    CARD_VALUE = {'T': 10, 'J': 11, 'Q' :12 , 'K' :13, 'A': 14, '2': 2, '3': 3, '4':4, '5':5, '6':6, '7':7, '8': 8, '9': 9, '10':10}
     MEDIUM = ['7', '8', '9']
     MAX_CHIPS = 3000
 
@@ -64,7 +64,7 @@ class Player:
         if probability > .33:
             bet = probability / .65 * monty['stack']
         else:
-            bet = 0
+            bet = 4.0 * game_state['small_blind']
         return int(bet)
 
         # if self.isPair(monty_hole_cards):
