@@ -78,7 +78,6 @@ class Player:
         elif num_community_cards == 5:
             if game_state['current_buy_in'] < 0.5*game_state['pot']:
                 bet += game_state['current_buy_in'] + game_state['minimum_raise']+1
-
         return int(bet)
 
     def showdown(self, game_state):
