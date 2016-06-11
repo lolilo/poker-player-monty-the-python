@@ -100,6 +100,7 @@ class TestPlayer(unittest.TestCase):
 
     def test_betRequest(self):
         self.assertEqual(self.player.betRequest(self.game_state), 1000)
+        self.assertEqual(self.player.showdown(self.game_state),0)
 
 
 if __name__ == '__main__':

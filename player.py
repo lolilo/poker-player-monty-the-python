@@ -1,3 +1,4 @@
+import sys
 
 class Player:
     VERSION = "Default Python folding player"
@@ -6,5 +7,6 @@ class Player:
         return 1000
 
     def showdown(self, game_state):
-        pass
-
+        print >> sys.stderr, 'Showdown!'
+        print >> sys.stderr, str( game_state['game_id'] )
+        return 0
