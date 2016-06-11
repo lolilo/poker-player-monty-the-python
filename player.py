@@ -15,6 +15,11 @@ class Player:
             else:
                 return False
 
+    #Suited connectors are two consecutive cards of the same suit
+    #isSuitedConnector should return the (HIGH card, suit) of the connector if True, False otherwise
+    def isSuitedConnector(self, monty_hole_cards):
+        pass
+
     def betRequest(self, game_state):
         big_blind = 2.0*game_state["small_blind"]
     	monty_index = game_state['in_action']
