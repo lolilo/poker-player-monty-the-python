@@ -2,11 +2,28 @@ import sys
 
 class Player:
     VERSION = "Default Python folding player"
+    HIGH = ['10', 'J', 'Q', 'K', 'A']
+    MEDIUM = ['7', '8', '9']
 
     def betRequest(self, game_state):
-        return 1000
+    	monty_index = game_state['in_action']
+    	monty = game_state['players'][monty_index]
+    	monty_hole_cards = monty['hole_cards']
+
+    	max_bet = 0
+    	for card in monty_hole_cards:
+    		rank = card['rank']
+    		if rank in self.HIGH:
+    			max_bet += 700
+    		elif rank in self.MEDIUM:
+    			max_bet += 300
+    		else:
+    			max_bet += 50
+
+    	return max_bet
 
     def showdown(self, game_state):
         print >> sys.stderr, 'Showdown!'
         print >> sys.stderr, str( game_state['game_id'] )
         return 0
+
