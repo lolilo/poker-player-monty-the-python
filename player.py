@@ -63,6 +63,9 @@ class Player:
 
         bet = 0
         
+        if len(game_state['players']) == 3:
+            return bet
+        
         if probability > .38:
             bet = probability / .65 * monty['stack']
         else:
