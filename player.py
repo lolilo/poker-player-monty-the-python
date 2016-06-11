@@ -75,8 +75,7 @@ class Player:
         elif num_community_cards == 4:
             pass #this is the turn
         elif num_community_cards == 5:
-            bet += game_state['current_buy_in'] + game_state['minimum_raise']+1
-
+            pass
         return int(bet)
 
     def showdown(self, game_state):
