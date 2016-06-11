@@ -61,7 +61,9 @@ class Player:
         hand_string = self.getHandString(monty_hole_cards)
         probability = PREFLOP_PROBABILITIES[hand_string]
 
-        if probability > .33:
+        bet = 0
+        
+        if probability > .38:
             bet = probability / .65 * monty['stack']
         else:
             if int(monty['stack']/game_state['small_blind']) > 50:
