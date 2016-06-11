@@ -58,22 +58,30 @@ class Player:
         monty = game_state['players'][monty_index]
         monty_hole_cards = monty['hole_cards']
 
+        hand_string = self.getHandString(monty_hole_cards)
+        probability = PREFLOP_PROBABILITIES[hand_string]
+        # big_blind = 2 * game_state['small_blind']
+        if probability > .33:
+            bet = probability / .65 * monty['stack']
+        else:
+            bet = 0
+        return int(bet)
 
-        if self.isPair(monty_hole_cards):
-            if self.isPair(monty_hole_cards) in self.HIGH:
-                return self.MAX_CHIPS
+        # if self.isPair(monty_hole_cards):
+        #     if self.isPair(monty_hole_cards) in self.HIGH:
+        #         return self.MAX_CHIPS
 
-        max_bet = 0
-        for card in monty_hole_cards:
-            rank = card['rank']
-            if rank in self.HIGH:
-                max_bet += 700
-            elif rank in self.MEDIUM:
-                max_bet += 300
-            else:
-                max_bet += 50
+        # max_bet = 0
+        # for card in monty_hole_cards:
+        #     rank = card['rank']
+        #     if rank in self.HIGH:
+        #         max_bet += 700
+        #     elif rank in self.MEDIUM:
+        #         max_bet += 300
+        #     else:
+        #         max_bet += 50
 
-        return max_bet
+        # return max_bet
 
     def showdown(self, game_state):
         print >> sys.stderr, 'Showdown!'

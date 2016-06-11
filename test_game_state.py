@@ -99,11 +99,8 @@ class TestPlayer(unittest.TestCase):
         }
 
     def test_betRequest(self):
-        self.assertEqual(self.player.betRequest(self.game_state), 750)
+        self.assertEqual(self.player.betRequest(self.game_state), 856)
         self.assertEqual(self.player.showdown(self.game_state), 0)
-
-    def test_rough_evaluation(self):
-        self.assertEqual(self.player.betRequest(self.game_state), 750)
 
     def test_isPair_and_suit(self):
         hand_1 = [{'rank': '6', 'suit': 'hearts'}, {'rank': 'K', 'suit': 'hearts'}]
