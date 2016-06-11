@@ -4,7 +4,8 @@ import csv
 class Player:
     VERSION = "rank data"
     CARD_VALUE = {'T': 10, 'J': 11, 'Q' :12 , 'K' :13, 'A': 14, '2': 2, '3': 3, '4':4, '5':5, '6':6, '7':7, '8': 8, '9': 9, '10':10}
-
+    HIGH = ['10', 'J', 'Q', 'K', 'A']
+    
     #parses the json hand into a string in order to match with the probabilities csv file.
     def getHandString(self, monty_hole_cards):
         pair = self.isPair(monty_hole_cards)
@@ -64,6 +65,9 @@ class Player:
         bet = 0
         
         if len(game_state['players']) == 3:
+            if self.isPair(monty_hole_cards):
+                if self.isPair(monty_hole_cards) in self.HIGH:
+                    return 3000
             return bet
         
         if probability > .38:
